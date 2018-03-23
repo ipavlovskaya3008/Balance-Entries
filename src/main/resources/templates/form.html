@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Journal Entries</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+</head>
+<script type="text/javascript" th:src="@{/js/lib/script1.js}"></script>
+<body onsubmit='saveEntry()'>
+<div class="container"></div>
+<h1>Prior Balance</h1>
+<div class="jumbotron">
+    <h3>Add Prior Balance</h3>
+    <form id="issueInputForm" action="/form">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <table class="table table-bordered table-hover" id="tab_priorLogic">
+                    <thead>
+                    <tr>
+                        <th class="text-center">
+                            Year
+                        </th>
+                        <th class="text-center">
+                            DD
+                        </th>
+                        <th class="text-center">
+                            MM
+                        </th>
+                        <th class="text-center">
+                            Select Account
+                        </th>
+                        <th class="text-center">
+                            Enter Dollar Amount
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id='priorEntry'>
+                        <td>
+                            <input type="text" id='priorEntryYear0'  name='priorEntryYear'  placeholder='Year' class="form-control" />
+                        </td>
+                        <td>
+                            <input type="text" id='priorEntryDate0' name='priorEntryDate' placeholder='DD' class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" id='priorEntryMonth0' name='priorEntryMonth' placeholder='MM' class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" id='priorEntryAccount0' name='priorEntryAccount' placeholder='Select Account' class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" id='priorEntryAmount0' name='priorEntryAmount' placeholder='Enter Dollar Amount' class="form-control"/>
+                        </td>
+                        <td>
+                            <button type='button' onclick='addPriorRow()' class='btn btn-primary'>Add Row</button>
+                        </td>
+                        <td>
+                            <button type='button' onclick='removePriorRow(this)' class='btn btn-primary'>Remove Row</button>
+                        </td>
+                    </tbody>
+                </table>
+                <div class = "col-lg-12">
+                    <div id="priorEntryList"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/lib/adddelete.js}">
+        </script>
+        <p class="hidden"> Clicks: <a id="priorCounter">0</a></p>
+        <h3>Add Current Balance</h3>
+        <table class="table table-bordered table-hover" id="tab_currentLogic">
+            <thead>
+            <tr>
+                <th class="text-center">
+                    Year
+                </th>
+                <th class="text-center">
+                    DD
+                </th>
+                <th class="text-center">
+                    MM
+                </th>
+                <th class="text-center">
+                    Select Account
+                </th>
+                <th class="text-center">
+                    Enter Debit Amount
+                </th>
+                <th class="text-center">
+                    Enter Credit Amount
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr id='currentEntry'>
+                <td>
+                    <input type="text" id='currentEntryYear0'  name='currentEntryYear'  placeholder='Year' class="form-control" />
+                </td>
+                <td>
+                    <input type="text" id='currentEntryDate0' name='currentEntryDate' placeholder='DD' class="form-control"/>
+                </td>
+                <td>
+                    <input type="text" id='currentEntryMonth0' name='currentEntryMonth' placeholder='MM' class="form-control"/>
+                </td>
+                <td>
+                    <input type="text" id='currentEntryAccount0' name='currentEntryAccount' placeholder='Select Account' class="form-control"/>
+                </td>
+                <td>
+                    <input type="text" id='currentDebitAmount0' name='currentDebitAmount' placeholder='Enter Debit Amount' class="form-control"/>
+                </td>
+                <td>
+                    <input type="text" id='currentCreditAmount0' name='currentCreditAmount' placeholder='Enter Credit Amount' class="form-control"/>
+                </td>
+                <td>
+                    <button type='button' onclick='addCurrentRow()' class='btn btn-primary'>Add Row</button>
+                </td>
+                <td>
+                    <button type='button' onclick='removeCurrentRow(this)' class='btn btn-primary'>Remove Row</button>
+                </td>
+            </tbody>
+        </table>
+        <div class = "col-lg-12">
+        <div id="currentEntryList"></div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/lib/adddeletecurrent.js}">
+        </script>
+        <p class="hidden"> Clicks: <a id="currentCounter">0</a></p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+</body>
+</html>

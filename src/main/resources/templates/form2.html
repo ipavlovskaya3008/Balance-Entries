@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:contenttype="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Journal Entries</title>
+    <meta  content="application/json"  />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+.button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<h1>Form</h1>
+<h1>Prior Balance</h1>
+<form onsubmit='return onSubmit(this)' action="/form" method="post">
+    <script type="application/javascript">
+            $(document).ready(function(){
+      var i=1;
+     $("#add_priorRow").click(function(){
+    	 $('#priorEntry'+i).html('<td>'+(i+1)+'</td><td><input name='priorEntryYear"+i+"' type='text' placeholder='Year' class='form-control input-md'/></td><td><input  name='priorEntryDate"+i+"' type='text' placeholder='DD'  class='form-control input-md'/></td><td><input  name='priorEntryMonth"+i+"' type='text' placeholder='MM'  class='form-control input-md'/></td><td><input  name='priorEntryAccount"+i+"' type='text' placeholder='Select Account'  class='form-control input-md'/></td><td><input  name='priorEntryAmount"+i+"' type='text' placeholder='Enter Dollar Amount'  class='form-control input-md'/></td>');
+    $('#tab_priorLogic').append('<tr id="priorEntry'+(i+1)+'"></tr>');
+    console.log('hello');
+      i++;
+  });
+   $("#delete_currentrow").click(function(){
+    	 if(i>1){
+		 $("#currententry"+(i-1)).html('');
+		 i--;
+		 }
+	 });
+	 });
+	 function onSubmit(form){
+  var data = JSON.stringify($(form).serializeArray() );
+   $.ajax({
+        type: "POST",
+        data :data,
+        url: "/form",
+        contentType: "application/json"
+    });
+    return false;
+}
+    </script>
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <table class="table table-bordered table-hover" id="tab_priorLogic">
+                    <thead>
+                    <tr >
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            Year
+                        </th>
+                        <th class="text-center">
+                            DD
+                        </th>
+                        <th class="text-center">
+                            MM
+                        </th>
+                        <th class="text-center">
+                            Select Account
+                        </th>
+                        <th class="text-center">
+                            Enter Dollar Amount
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id='priorEntry0'>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            <input type="text" name='priorEntryYear0'  placeholder='Year' class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" name='priorEntryDate0' placeholder='DD' class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" name='priorEntryMonth0' placeholder='MM' class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" name='priorEntryAccount0' placeholder='Select Account' class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" name='priorEntryAmount0' placeholder='Enter Dollar Amount' class="form-control"/>
+                        </td>
+                    </tr>
+                    <tr id='priorEntry1'></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<a id="add_priorRow" class="btn button pull-left">Add Row</a><a id='delete_priorRow' class="pull-right btn button">Delete Row</a>
+</body>
+</html>
